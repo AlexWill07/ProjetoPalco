@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Palco Vivo | Gestão de operações</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <a class="logo" href="#">palco<span>vivo</span></a>
+        <p class="workspace">OPERAÇÃO · OUTUBRO 2026</p>
+        <nav class="menu" aria-label="Telas do sistema">
+            <button class="menu-item active" data-view="overview"><b>01</b> Visão geral</button>
+            <button class="menu-item" data-view="equipment"><b>02</b> Equipamentos</button>
+            <button class="menu-item" data-view="people"><b>03</b> Profissionais</button>
+            <button class="menu-item" data-view="events"><b>04</b> Eventos</button>
+            <button class="menu-item" data-view="allocation"><b>05</b> Alocação</button>
+            <button class="menu-item" data-view="schedule"><b>06</b> Escala de equipe</button>
+            <button class="menu-item" data-view="return"><b>07</b> Saída e retorno</button>
+            <button class="menu-item" data-view="map"><b>08</b> Mapa de ocupação</button>
+        </nav>
+        <div class="sidebar-footer"><span class="online"></span> Operação sincronizada</div>
+    </aside>
+    <main class="app">
+        <header class="app-header">
+            <div>
+                <p class="breadcrumb">PAINEL / <span id="crumb">VISÃO GERAL</span></p>
+                <h1 id="page-title">Visão geral</h1>
+            </div>
+            <div class="header-actions"><button class="notification" aria-label="Notificações">●<i>2</i></button>
+                <div class="avatar">RD</div>
+            </div>
+        </header>
+
+        <section class="view active" id="overview">
+            <div class="intro">
+                <div>
+                    <h2>Bom dia, Renata.</h2>
+                    <p>Veja o que precisa de atenção antes de confirmar os próximos eventos.</p>
+                </div><button class="primary" data-go="events">+ Novo evento</button>
+            </div>
+            <div class="stats">
+                <article><span>Eventos no mês</span><strong>20</strong><small>+ 3 esta semana</small></article>
+                <article><span>Equipamentos alocados</span><strong>184 <em>/ 260</em></strong><small>70% do
+                        acervo</small></article>
+                <article><span>Equipe escalada</span><strong>28 <em>/ 34</em></strong><small>6 profissionais
+                        livres</small></article>
+                <article class="warning-stat"><span>Conflitos para revisar</span><strong>02</strong><small>Antes da
+                        confirmação</small></article>
+            </div>
+            <div class="split">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <p class="label">PRÓXIMOS EVENTOS</p>
+                            <h3>Agenda operacional</h3>
+                        </div><button class="text-button" data-go="events">Ver todos</button>
+                    </div>
+                    <div class="event-list">
+                        <div class="event-row"><span class="date"><b>16</b>OUT</span>
+                            <div><strong>Casamento Ferreira</strong><small>Montagem · 08h</small></div><span
+                                class="tag confirmed">Confirmado</span>
+                        </div>
+                        <div class="event-row"><span class="date danger"><b>17</b>OUT</span>
+                            <div><strong>Formatura Unicastelo</strong><small>Montagem · 14h</small></div><span
+                                class="tag conflict">Conflito</span>
+                        </div>
+                        <div class="event-row"><span class="date"><b>24</b>OUT</span>
+                            <div><strong>Festival Aurora</strong><small>Montagem · 08h</small></div><span
+                                class="tag planned">Em proposta</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <p class="label">ATENÇÃO</p>
+                            <h3>Validações pendentes</h3>
+                        </div>
+                    </div>
+                    <div class="alert-list">
+                        <div><span class="alert-dot"></span>
+                            <p><b>2 mesas de som</b> estão sobrepostas entre Casamento e Formatura.<small>RN-01 ·
+                                    Equipamentos</small></p>
+                        </div>
+                        <div><span class="alert-dot"></span>
+                            <p><b>Denilson Rocha</b> já está escalado no período.<small>RN-03 · Equipe</small></p>
+                        </div>
+                        <div><span class="green-dot"></span>
+                            <p><b>Festival Aurora</b> tem equipamentos disponíveis.<small>Checagem concluída</small></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="panel lifecycle">
+                <div class="panel-head">
+                    <div>
+                        <p class="label">CICLO DE VIDA</p>
+                        <h3>Como um evento evolui</h3>
+                    </div>
+                </div>
+                <div class="pipeline"><span>Proposta</span><i>→</i><span>Contratado</span><i>→</i><span
+                        class="current">Escalado</span><i>→</i><span>Em execução</span><i>→</i><span>Encerrado</span>
+                </div>
+                <p class="helper">Estados alternativos: <b>Bloqueado por indisponibilidade</b> e <b>Pendente de
+                        retorno</b>.</p>
+            </section>
+        </section>
+
+        <section class="view" id="equipment">
+            <div class="intro">
+                <div>
+                    <h2>Cadastro de equipamentos</h2>
+                    <p>Registre categorias, quantidade disponível e regra de folga.</p>
+                </div><button class="primary" data-modal="equipment-modal">+ Cadastrar equipamento</button>
+            </div>
+            <section class="panel equipment-panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="label">ACERVO</p>
+                        <h3>260 equipamentos cadastrados</h3>
+                    </div><label class="search-wrap"><span>⌕</span><input class="search" id="equipment-search"
+                            placeholder="Buscar equipamento" aria-label="Buscar equipamento"></label>
+                </div>
+                <p class="mobile-results" id="equipment-results">Exibindo 3 equipamentos</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Equipamento</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
+                                <th>Dia de folga</th>
+                                <th>Disponível</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="equipment-body">
+                            <tr>
+                                <td data-label="Equipamento">Mesa de som 32 canais</td>
+                                <td data-label="Categoria"><span class="pill">Som</span></td>
+                                <td data-label="Quantidade">3</td>
+                                <td data-label="Dia de folga">Sim</td>
+                                <td data-label="Disponível"><b class="available">1 unidade</b></td>
+                                <td data-label="Ações"><button class="more"
+                                        aria-label="Mais ações para Mesa de som 32 canais">•••</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Equipamento">Moving head</td>
+                                <td data-label="Categoria"><span class="pill">Luz</span></td>
+                                <td data-label="Quantidade">16</td>
+                                <td data-label="Dia de folga">Sim</td>
+                                <td data-label="Disponível"><b class="available">16 unidades</b></td>
+                                <td data-label="Ações"><button class="more"
+                                        aria-label="Mais ações para Moving head">•••</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Equipamento">Praticável 2x1m</td>
+                                <td data-label="Categoria"><span class="pill">Estrutura</span></td>
+                                <td data-label="Quantidade">24</td>
+                                <td data-label="Dia de folga">Não</td>
+                                <td data-label="Disponível"><b class="available">24 unidades</b></td>
+                                <td data-label="Ações"><button class="more"
+                                        aria-label="Mais ações para Praticável 2x1m">•••</button></td>
+                            </tr>
+                            <tr class="empty-equipment" hidden>
+                                <td colspan="6">Nenhum equipamento encontrado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="people">
+            <div class="intro">
+                <div>
+                    <h2>Cadastro de profissionais</h2>
+                    <p>Habilitações e disponibilidade definem quem pode entrar em cada escala.</p>
+                </div><button class="primary" data-modal="people-modal">+ Cadastrar profissional</button>
+            </div>
+            <section class="panel people-panel">
+                <div class="panel-head">
+                    <div>
+                        <p class="label">EQUIPE</p>
+                        <h3>34 profissionais no cadastro</h3>
+                    </div><label class="search-wrap"><span>⌕</span><input class="search" id="people-search"
+                            placeholder="Buscar profissional" aria-label="Buscar profissional"></label>
+                </div>
+                <p class="mobile-results" id="people-results">Exibindo 3 profissionais</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profissional</th>
+                                <th>Habilitações</th>
+                                <th>Disponibilidade</th>
+                                <th>Próxima escala</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="people-body">
+                            <tr>
+                                <td data-label="Profissional">Ivan Marcondes</td>
+                                <td data-label="Habilitações"><span class="pill">som</span> <span
+                                        class="pill">montagem</span></td>
+                                <td data-label="Disponibilidade">Sexta a domingo</td>
+                                <td data-label="Próxima escala"><b class="available">Livre</b></td>
+                                <td data-label="Ações"><button class="more">•••</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Profissional">Priscila Amado</td>
+                                <td data-label="Habilitações"><span class="pill">cerimonial</span></td>
+                                <td data-label="Disponibilidade">Todos os dias</td>
+                                <td data-label="Próxima escala"><b class="available">Livre</b></td>
+                                <td data-label="Ações"><button class="more">•••</button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Profissional">Denilson Rocha</td>
+                                <td data-label="Habilitações"><span class="pill">luz</span> <span
+                                        class="pill">montagem</span></td>
+                                <td data-label="Disponibilidade">Quarta a sábado</td>
+                                <td data-label="Próxima escala"><b class="unavailable">Em conflito</b></td>
+                                <td data-label="Ações"><button class="more">•••</button></td>
+                            </tr>
+                            <tr class="empty-people" hidden>
+                                <td colspan="5">Nenhum profissional encontrado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="events">
+            <div class="intro">
+                <div>
+                    <h2>Cadastro de eventos</h2>
+                    <p>Defina datas de montagem, execução e desmontagem.</p>
+                </div><button class="primary" data-modal="event-modal">+ Criar evento</button>
+            </div>
+            <section class="panel events-panel">
+                <div class="tabs" role="tablist" aria-label="Filtrar eventos"><button class="tab active"
+                        data-filter="all" role="tab" aria-selected="true">Todos <b>3</b></button><button class="tab"
+                        data-filter="proposta" role="tab" aria-selected="false">Proposta <b>1</b></button><button
+                        class="tab" data-filter="contratado" role="tab" aria-selected="false">Contratado
+                        <b>0</b></button><button class="tab" data-filter="escalado" role="tab"
+                        aria-selected="false">Escalado <b>0</b></button><button class="tab" data-filter="execucao"
+                        role="tab" aria-selected="false">Em execução <b>2</b></button></div>
+                <div class="events-summary" id="events-summary"><span class="summary-icon">3</span>
+                    <p><b>Todos os eventos</b><small>3 eventos exibidos · 1 exige atenção antes da confirmação.</small>
+                    </p><span class="summary-note">Use as abas para filtrar por fase operacional</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>Montagem</th>
+                                <th>Execução</th>
+                                <th>Desmontagem</th>
+                                <th>Itens</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="event-body">
+                            <tr data-status="execucao">
+                                <td data-label="Evento">Casamento Ferreira</td>
+                                <td data-label="Montagem">16/10, 08h</td>
+                                <td data-label="Execução">17/10</td>
+                                <td data-label="Desmontagem">18/10, 06h</td>
+                                <td data-label="Itens">2 mesas de som</td>
+                                <td data-label="Status"><span class="tag confirmed">Confirmado</span></td>
+                            </tr>
+                            <tr data-status="execucao">
+                                <td data-label="Evento">Formatura Unicastelo</td>
+                                <td data-label="Montagem">17/10, 14h</td>
+                                <td data-label="Execução">18/10</td>
+                                <td data-label="Desmontagem">19/10, 06h</td>
+                                <td data-label="Itens">2 mesas de som</td>
+                                <td data-label="Status"><span class="tag conflict">Conflito</span></td>
+                            </tr>
+                            <tr data-status="proposta">
+                                <td data-label="Evento">Festival Aurora</td>
+                                <td data-label="Montagem">24/10, 08h</td>
+                                <td data-label="Execução">25/10</td>
+                                <td data-label="Desmontagem">26/10, 05h</td>
+                                <td data-label="Itens">24 praticáveis</td>
+                                <td data-label="Status"><span class="tag planned">Proposta</span></td>
+                            </tr>
+                            <tr class="empty-events" hidden>
+                                <td colspan="6">Não há eventos nesta etapa.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="allocation">
+            <div class="intro">
+                <div>
+                    <h2>Alocação de equipamentos</h2>
+                    <p>Vincule itens ao evento e valide período, quantidade e dia de folga.</p>
+                </div><button class="primary" data-modal="allocation-modal">+ Alocar equipamento</button>
+            </div>
+            <section class="allocation-stats">
+                <article><span>Itens solicitados</span><b>10</b><small>2 tipos de equipamento</small></article>
+                <article><span>Itens disponíveis</span><b>8</b><small>Moving head validado</small></article>
+                <article class="conflict-card"><span>Itens bloqueados</span><b>2</b><small>Mesas de som em
+                        conflito</small></article>
+            </section>
+            <section class="panel allocation-panel">
+                <div class="allocation-top">
+                    <div><label for="allocation-event">Evento selecionado</label><select id="allocation-event">
+                            <option>Formatura Unicastelo · 17 a 19 out</option>
+                            <option>Casamento Ferreira · 16 a 18 out</option>
+                        </select><small>Montagem: 17/10, 14h · Desmontagem: 19/10, 06h</small></div>
+                    <div class="validation-box"><b>⚠ 1 conflito encontrado</b><span>2 mesas de som já estão reservadas
+                            no período solicitado.</span><button class="text-button" data-go="map">Ver no mapa de
+                            ocupação →</button></div>
+                </div>
+                <div class="reservation-info">
+                    <div><span>Período de uso</span><b>17/10, 14h → 19/10, 06h</b></div>
+                    <div><span>Folga obrigatória</span><b>20/10 para som, luz e energia</b></div>
+                    <div><span>Validação aplicada</span><b>RN-01 e RN-02</b></div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Equipamento</th>
+                                <th>Quantidade</th>
+                                <th>Em estoque</th>
+                                <th>Período reservado</th>
+                                <th>Folga</th>
+                                <th>Validação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Equipamento">Mesa de som 32 canais</td>
+                                <td data-label="Quantidade">2</td>
+                                <td data-label="Em estoque">3 unidades</td>
+                                <td data-label="Período reservado">17/10 14h — 19/10 06h</td>
+                                <td data-label="Folga">20/10</td>
+                                <td data-label="Validação"><b class="unavailable">Indisponível · RN-01</b><small
+                                        class="cell-note">1 unidade livre; faltam 1</small></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Equipamento">Moving head</td>
+                                <td data-label="Quantidade">8</td>
+                                <td data-label="Em estoque">16 unidades</td>
+                                <td data-label="Período reservado">17/10 14h — 19/10 06h</td>
+                                <td data-label="Folga">20/10</td>
+                                <td data-label="Validação"><b class="available">Disponível</b><small class="cell-note">8
+                                        unidades restantes</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="allocation-footer">
+                    <p><b>Para confirmar este evento:</b> substitua ou reduza a quantidade de mesas de som até que todos
+                        os itens estejam disponíveis.</p><button class="primary secondary" disabled>Confirmar
+                        alocação</button>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="schedule">
+            <div class="intro">
+                <div>
+                    <h2>Escala de equipe</h2>
+                    <p>Vincule profissionais por função, com validação de habilitação e disponibilidade.</p>
+                </div><button class="primary" data-modal="schedule-modal">+ Adicionar à escala</button>
+            </div>
+            <section class="panel schedule-panel">
+                <div class="schedule-header">
+                    <div>
+                        <p class="label">FORMatura UNICASTELO</p>
+                        <h3>17 a 19 de outubro</h3><small>Montagem, execução e desmontagem</small>
+                    </div><span class="tag conflict">1 conflito</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Função</th>
+                                <th>Profissional</th>
+                                <th>Habilitações</th>
+                                <th>Disponibilidade</th>
+                                <th>Validação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Função">Operador de luz</td>
+                                <td data-label="Profissional">Denilson Rocha</td>
+                                <td data-label="Habilitações">luz, montagem</td>
+                                <td data-label="Disponibilidade">Quarta a sábado</td>
+                                <td data-label="Validação"><b class="unavailable">Sobreposição · RN-03</b></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Função">Cerimonial</td>
+                                <td data-label="Profissional">Priscila Amado</td>
+                                <td data-label="Habilitações">cerimonial</td>
+                                <td data-label="Disponibilidade">Todos os dias</td>
+                                <td data-label="Validação"><b class="available">Escala válida</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="return">
+            <div class="intro">
+                <div>
+                    <h2>Saída e retorno</h2>
+                    <p>Faça a conferência item a item e registre avarias antes de devolver ao acervo.</p>
+                </div><button class="primary" data-modal="return-modal">+ Registrar conferência</button>
+            </div>
+            <section class="panel return-panel">
+                <div class="return-card">
+                    <div>
+                        <p class="label">CASAMENTO FERREIRA</p>
+                        <h3>Conferência de retorno</h3><span>Desmontagem concluída em 18/10, 06h</span>
+                    </div>
+                    <div class="progress"><b>8 de 10</b><span>itens conferidos</span>
+                        <div><i></i></div>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qtd. enviada</th>
+                                <th>Qtd. retornada</th>
+                                <th>Condição</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Item">Mesa de som 32 canais</td>
+                                <td data-label="Qtd. enviada">2</td>
+                                <td data-label="Qtd. retornada">2</td>
+                                <td data-label="Condição">Sem avaria</td>
+                                <td data-label="Status"><b class="available">Conferido</b></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Item">Moving head</td>
+                                <td data-label="Qtd. enviada">8</td>
+                                <td data-label="Qtd. retornada">6</td>
+                                <td data-label="Condição">—</td>
+                                <td data-label="Status"><b class="unavailable">2 pendentes</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="view" id="map">
+            <div class="intro">
+                <div>
+                    <h2>Mapa de ocupação</h2>
+                    <p>Visualize equipamentos e pessoas por período, com conflitos futuros.</p>
+                </div>
+                <div class="date-control">‹ <b>OUTUBRO 2026</b> ›</div>
+            </div>
+            <section class="panel map-panel">
+                <div class="map-legend"><span><i class="legend-free"></i> Livre</span><span><i class="legend-busy"></i>
+                        Alocado</span><span><i class="legend-conflict"></i> Conflito</span><span><i
+                            class="legend-maintenance"></i> Manutenção</span></div>
+                <div class="occupancy">
+                    <div class="days head"><b>Recurso</b><b>14 Qua</b><b>15 Qui</b><b>16 Sex</b><b>17 Sáb</b><b>18
+                            Dom</b><b>19 Seg</b><b>20 Ter</b></div>
+                    <div class="days"><strong>Mesa de som 32 canais <small>Som</small></strong><i></i><i></i><i
+                            class="busy">Casamento</i><i class="conflict">Conflito</i><i class="conflict">Conflito</i><i
+                            class="busy">Folga</i><i></i></div>
+                    <div class="days"><strong>Moving head <small>Luz</small></strong><i></i><i></i><i
+                            class="busy">Casamento</i><i class="busy">Formatura</i><i class="busy">Formatura</i><i
+                            class="busy">Folga</i><i></i></div>
+                    <div class="days"><strong>Denilson Rocha <small>Equipe</small></strong><i></i><i></i><i
+                            class="busy">Casamento</i><i class="conflict">Escalado</i><i
+                            class="conflict">Escalado</i><i></i><i></i></div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <dialog id="equipment-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Novo equipamento</h3><button class="close">×</button>
+            </div><label>Nome do equipamento<input id="eq-name"
+                    placeholder="Ex.: Caixa de som ativa"></label><label>Categoria<select id="eq-category">
+                    <option>Som</option>
+                    <option>Luz</option>
+                    <option>Estrutura</option>
+                </select></label><label>Quantidade<input id="eq-amount" type="number" min="1" value="1"></label><label
+                class="check"><input id="eq-rest" type="checkbox"> Exige dia de folga após a desmontagem</label><button
+                class="primary" id="save-equipment" value="default">Salvar equipamento</button>
+        </form>
+    </dialog>
+    <dialog id="people-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Novo profissional</h3><button class="close">×</button>
+            </div><label>Nome completo<input id="person-name"
+                    placeholder="Ex.: Ana Souza"></label><label>Habilitações<input id="person-skills"
+                    placeholder="Ex.: luz, montagem"></label><label>Disponibilidade<select id="person-days">
+                    <option>Todos os dias</option>
+                    <option>Segunda a sexta</option>
+                    <option>Quarta a sábado</option>
+                </select></label><button class="primary" id="save-person" value="default">Salvar profissional</button>
+        </form>
+    </dialog>
+    <dialog id="event-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Novo evento</h3><button class="close">×</button>
+            </div><label>Nome do evento<input id="event-name" placeholder="Ex.: Show de verão"></label>
+            <div class="form-grid"><label>Montagem<input id="event-build" type="date"></label><label>Execução<input
+                        id="event-live" type="date"></label></div><label>Desmontagem<input id="event-strike"
+                    type="date"></label><button class="primary" id="save-event" value="default">Criar evento</button>
+        </form>
+    </dialog>
+    <dialog id="allocation-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Alocar equipamento</h3><button class="close">×</button>
+            </div><label>Equipamento<select>
+                    <option>Mesa de som 32 canais</option>
+                    <option>Moving head</option>
+                    <option>Praticável 2x1m</option>
+                </select></label><label>Quantidade<input type="number" value="1" min="1"></label>
+            <p class="form-note">A disponibilidade será validada no período do evento, incluindo a folga aplicável.</p>
+            <button class="primary" value="default">Validar e alocar</button>
+        </form>
+    </dialog>
+    <dialog id="schedule-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Adicionar à escala</h3><button class="close">×</button>
+            </div><label>Função<select>
+                    <option>Operador de luz</option>
+                    <option>Operador de som</option>
+                    <option>Cerimonial</option>
+                </select></label><label>Profissional<select>
+                    <option>Denilson Rocha</option>
+                    <option>Ivan Marcondes</option>
+                    <option>Priscila Amado</option>
+                </select></label>
+            <p class="form-note">O sistema valida habilitação, disponibilidade e sobreposição de período.</p><button
+                class="primary" value="default">Validar escala</button>
+        </form>
+    </dialog>
+    <dialog id="return-modal">
+        <form method="dialog">
+            <div class="modal-head">
+                <h3>Registrar retorno</h3><button class="close">×</button>
+            </div><label>Equipamento<select>
+                    <option>Moving head</option>
+                    <option>Mesa de som 32 canais</option>
+                </select></label><label>Quantidade retornada<input type="number" value="1" min="0"></label><label
+                class="check"><input type="checkbox"> Registrar avaria e enviar para manutenção</label><button
+                class="primary" value="default">Confirmar retorno</button>
+        </form>
+    </dialog>
+    <script src="script.js"></script>
+</body>
+
+</html>
