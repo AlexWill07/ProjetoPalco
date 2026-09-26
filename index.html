@@ -5,22 +5,106 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Palco Vivo | Gestão de operações</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./Styles/styles.css">
 </head>
 
 <body>
+    <div class="stage auth-screen" id="stage-login">
+        <div class="auth-spotlights" aria-hidden="true"></div>
+        <div class="auth-card">
+            <a class="logo" href="#">palco<span>vivo</span></a>
+            <p class="auth-sub">Gestão de operações · acesso restrito à equipe</p>
+            <label class="auth-field"><span>Usuário</span><input id="login-user" type="text"
+                    placeholder="usuario@palcovivo.com.br" autocomplete="username"></label>
+            <label class="auth-field"><span>Senha</span><input id="login-pass" type="password" placeholder="••••••••"
+                    autocomplete="current-password"></label>
+            <div class="auth-row"><label class="check"><input id="login-remember" type="checkbox"
+                        checked> Lembrar-me</label><a class="text-button" href="#">Esqueci minha senha</a></div>
+            <button class="primary auth-submit" id="login-submit">Entrar</button>
+            <p class="auth-note">Login validado localmente nesta versão · integração com o banco de dados em
+                desenvolvimento.</p>
+        </div>
+    </div>
+
+    <div class="stage launcher-screen" id="stage-launcher" hidden>
+        <header class="launcher-header">
+            <a class="logo" href="#">palco<span>vivo</span></a>
+            <div class="header-actions"><button class="notification" aria-label="Notificações">●<i>2</i></button>
+                <button class="avatar" id="launcher-logout" title="Sair">RD</button>
+            </div>
+        </header>
+        <div class="launcher-intro">
+            <h2>Bom dia.</h2>
+            <p>Escolha uma área para começar a trabalhar.</p>
+        </div>
+        <div class="launcher-grid">
+            <button class="launcher-tile" data-launch="overview"><span class="tile-icon tile-blue"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    </svg></span><b>Visão geral</b></button>
+            <button class="launcher-tile" data-launch="events"><span class="tile-icon tile-teal"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="5" width="18" height="16" rx="2" />
+                        <path d="M3 9h18M8 3v4M16 3v4" />
+                    </svg></span><b>Eventos</b></button>
+            <button class="launcher-tile" data-launch="allocation"><span class="tile-icon tile-blue"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M3 7l9-4 9 4-9 4-9-4Z" />
+                        <path d="M3 7v10l9 4 9-4V7" />
+                        <path d="M12 11v10" />
+                    </svg></span><b>Alocação</b></button>
+            <button class="launcher-tile" data-launch="schedule"><span class="tile-icon tile-teal"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <circle cx="8" cy="8" r="3" />
+                        <circle cx="17" cy="9" r="2.5" />
+                        <path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 14.3c2.6.2 4.5 2.3 4.5 5" />
+                    </svg></span><b>Escala de equipe</b></button>
+            <button class="launcher-tile" data-launch="return"><span class="tile-icon tile-blue"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M3 16V6a1 1 0 0 1 1-1h9v11" />
+                        <path d="M13 9h4l4 4v3h-2" />
+                        <circle cx="7" cy="18" r="1.6" />
+                        <circle cx="17" cy="18" r="1.6" />
+                    </svg></span><b>Saída e retorno</b></button>
+            <button class="launcher-tile" data-launch="map"><span class="tile-icon tile-teal"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M4 5v14M4 8h9M4 13h13M4 18h6" />
+                    </svg></span><b>Mapa de ocupação</b></button>
+            <button class="launcher-tile" data-launch="equipment"><span class="tile-icon tile-blue"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="8" width="18" height="12" rx="1.5" />
+                        <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                    </svg></span><b>Equipamentos</b></button>
+            <button class="launcher-tile" data-launch="people"><span class="tile-icon tile-teal"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <circle cx="12" cy="8" r="3.5" />
+                        <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+                    </svg></span><b>Profissionais</b></button>
+            <button class="launcher-tile" data-launch="dataquality"><span class="tile-icon tile-yellow"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-11V6l7-3Z" />
+                        <path d="M9 12l2 2 4-4" />
+                    </svg></span><b>Qualidade dos dados</b></button>
+        </div>
+    </div>
+
+    <div class="stage app-stage" id="stage-app" hidden>
     <aside class="sidebar">
         <a class="logo" href="#">palco<span>vivo</span></a>
         <p class="workspace">OPERAÇÃO · OUTUBRO 2026</p>
         <nav class="menu" aria-label="Telas do sistema">
             <button class="menu-item active" data-view="overview"><b>01</b> Visão geral</button>
-            <button class="menu-item" data-view="equipment"><b>02</b> Equipamentos</button>
-            <button class="menu-item" data-view="people"><b>03</b> Profissionais</button>
-            <button class="menu-item" data-view="events"><b>04</b> Eventos</button>
-            <button class="menu-item" data-view="allocation"><b>05</b> Alocação</button>
-            <button class="menu-item" data-view="schedule"><b>06</b> Escala de equipe</button>
-            <button class="menu-item" data-view="return"><b>07</b> Saída e retorno</button>
-            <button class="menu-item" data-view="map"><b>08</b> Mapa de ocupação</button>
+            <button class="menu-item" data-view="events"><b>02</b> Eventos</button>
+            <button class="menu-item" data-view="allocation"><b>03</b> Alocação</button>
+            <button class="menu-item" data-view="schedule"><b>04</b> Escala de equipe</button>
+            <button class="menu-item" data-view="return"><b>05</b> Saída e retorno</button>
+            <button class="menu-item" data-view="map"><b>06</b> Mapa de ocupação</button>
+            <button class="menu-item" data-view="equipment"><b>07</b> Equipamentos</button>
+            <button class="menu-item" data-view="people"><b>08</b> Profissionais</button>
+            <button class="menu-item" data-view="dataquality"><b>09</b> Qualidade dos dados</button>
         </nav>
         <div class="sidebar-footer"><span class="online"></span> Operação sincronizada</div>
     </aside>
@@ -30,7 +114,9 @@
                 <p class="breadcrumb">PAINEL / <span id="crumb">VISÃO GERAL</span></p>
                 <h1 id="page-title">Visão geral</h1>
             </div>
-            <div class="header-actions"><button class="notification" aria-label="Notificações">●<i>2</i></button>
+            <div class="header-actions"><button class="apps-button" id="open-launcher"
+                    aria-label="Voltar para as áreas">▦</button><button class="notification"
+                    aria-label="Notificações">●<i>2</i></button>
                 <div class="avatar">RD</div>
             </div>
         </header>
@@ -82,15 +168,49 @@
                         </div>
                     </div>
                     <div class="alert-list">
-                        <div><span class="alert-dot"></span>
+                        <div class="alert alert-critical">
                             <p><b>2 mesas de som</b> estão sobrepostas entre Casamento e Formatura.<small>RN-01 ·
                                     Equipamentos</small></p>
+                            <button class="text-button" data-go="allocation">Resolver alocação →</button>
                         </div>
-                        <div><span class="alert-dot"></span>
+                        <div class="alert alert-critical">
                             <p><b>Denilson Rocha</b> já está escalado no período.<small>RN-03 · Equipe</small></p>
+                            <button class="text-button" data-go="schedule">Resolver escala →</button>
                         </div>
-                        <div><span class="green-dot"></span>
+                        <div class="alert alert-success">
                             <p><b>Festival Aurora</b> tem equipamentos disponíveis.<small>Checagem concluída</small></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="split">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <p class="label">EM MANUTENÇÃO</p>
+                            <h3>Equipamentos indisponíveis</h3>
+                        </div><button class="text-button" data-go="equipment">Ver acervo</button>
+                    </div>
+                    <div class="alert-list">
+                        <div class="alert alert-warning">
+                            <p><b>Moving head</b> · 2 unidades com avaria registrada no retorno.<small>RN-07 ·
+                                    Voltam ao acervo após reparo</small></p>
+                            <button class="text-button" data-go="return">Ver conferência →</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <p class="label">PENDENTES</p>
+                            <h3>Devoluções em aberto</h3>
+                        </div><button class="text-button" data-go="return">Ver saída e retorno</button>
+                    </div>
+                    <div class="alert-list">
+                        <div class="alert alert-critical">
+                            <p><b>Formatura Unicastelo</b> · 2 moving heads ainda não retornaram.<small>RN-08 ·
+                                    Bloqueia encerramento do evento</small></p>
+                            <button class="text-button" data-go="return">Registrar retorno →</button>
                         </div>
                     </div>
                 </section>
@@ -144,7 +264,8 @@
                                 <td data-label="Categoria"><span class="pill">Som</span></td>
                                 <td data-label="Quantidade">3</td>
                                 <td data-label="Dia de folga">Sim</td>
-                                <td data-label="Disponível"><b class="available">1 unidade</b></td>
+                                <td data-label="Disponível"><button class="text-button unavailable-link"
+                                        data-go="allocation">1 unidade · conflito →</button></td>
                                 <td data-label="Ações"><button class="more"
                                         aria-label="Mais ações para Mesa de som 32 canais">•••</button></td>
                             </tr>
@@ -223,7 +344,8 @@
                                 <td data-label="Habilitações"><span class="pill">luz</span> <span
                                         class="pill">montagem</span></td>
                                 <td data-label="Disponibilidade">Quarta a sábado</td>
-                                <td data-label="Próxima escala"><b class="unavailable">Em conflito</b></td>
+                                <td data-label="Próxima escala"><button class="text-button unavailable-link"
+                                        data-go="schedule">Em conflito →</button></td>
                                 <td data-label="Ações"><button class="more">•••</button></td>
                             </tr>
                             <tr class="empty-people" hidden>
@@ -264,6 +386,7 @@
                                 <th>Desmontagem</th>
                                 <th>Itens</th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="event-body">
@@ -274,6 +397,7 @@
                                 <td data-label="Desmontagem">18/10, 06h</td>
                                 <td data-label="Itens">2 mesas de som</td>
                                 <td data-label="Status"><span class="tag confirmed">Confirmado</span></td>
+                                <td data-label="Ações"><button class="text-button" data-go="map">Ver mapa →</button></td>
                             </tr>
                             <tr data-status="execucao">
                                 <td data-label="Evento">Formatura Unicastelo</td>
@@ -282,14 +406,17 @@
                                 <td data-label="Desmontagem">19/10, 06h</td>
                                 <td data-label="Itens">2 mesas de som</td>
                                 <td data-label="Status"><span class="tag conflict">Conflito</span></td>
+                                <td data-label="Ações"><button class="text-button unavailable-link"
+                                        data-go="allocation">Resolver →</button></td>
                             </tr>
                             <tr data-status="proposta">
                                 <td data-label="Evento">Festival Aurora</td>
                                 <td data-label="Montagem">24/10, 08h</td>
-                                <td data-label="Execução">25/10</td>
-                                <td data-label="Desmontagem">26/10, 05h</td>
+                                <td data-label="Execução">25 a 27/10 <small class="cell-note">3 dias</small></td>
+                                <td data-label="Desmontagem">28/10, 05h</td>
                                 <td data-label="Itens">24 praticáveis</td>
                                 <td data-label="Status"><span class="tag planned">Proposta</span></td>
+                                <td data-label="Ações"><button class="text-button" data-go="allocation">Alocar →</button></td>
                             </tr>
                             <tr class="empty-events" hidden>
                                 <td colspan="6">Não há eventos nesta etapa.</td>
@@ -319,7 +446,7 @@
                             <option>Formatura Unicastelo · 17 a 19 out</option>
                             <option>Casamento Ferreira · 16 a 18 out</option>
                         </select><small>Montagem: 17/10, 14h · Desmontagem: 19/10, 06h</small></div>
-                    <div class="validation-box"><b>⚠ 1 conflito encontrado</b><span>2 mesas de som já estão reservadas
+                    <div class="validation-box"><b>1 conflito encontrado</b><span>2 mesas de som já estão reservadas
                             no período solicitado.</span><button class="text-button" data-go="map">Ver no mapa de
                             ocupação →</button></div>
                 </div>
@@ -492,7 +619,90 @@
                 </div>
             </section>
         </section>
+
+        <section class="view" id="dataquality">
+            <div class="intro">
+                <div>
+                    <h2>Qualidade dos dados</h2>
+                    <p>Inconsistências na carga inicial que precisam de correção antes de confiar nas validações automáticas.</p>
+                </div>
+            </div>
+            <div class="stats">
+                <article class="warning-stat"><span>Eventos com datas invertidas</span><strong>02</strong><small>Desmontagem
+                        antes da montagem</small></article>
+                <article class="warning-stat"><span>Equipamentos sem categoria</span><strong>03</strong><small>Não entram
+                        em validação de folga</small></article>
+                <article class="warning-stat"><span>Habilitações divergentes</span><strong>04</strong><small>Grafias
+                        diferentes para a mesma função</small></article>
+            </div>
+            <section class="panel">
+                <div class="tabs" role="tablist" aria-label="Filtrar inconsistências"><button class="tab active"
+                        data-dq-filter="all" role="tab" aria-selected="true">Todas <b>9</b></button><button
+                        class="tab" data-dq-filter="evento" role="tab" aria-selected="false">Eventos <b>2</b></button><button
+                        class="tab" data-dq-filter="equipamento" role="tab" aria-selected="false">Equipamentos
+                        <b>3</b></button><button class="tab" data-dq-filter="profissional" role="tab"
+                        aria-selected="false">Profissionais <b>4</b></button></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Registro</th>
+                                <th>Problema</th>
+                                <th>Prioridade</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataquality-body">
+                            <tr data-dq="evento">
+                                <td data-label="Tipo"><span class="pill">Evento</span></td>
+                                <td data-label="Registro">Réveillon Beira-Mar</td>
+                                <td data-label="Problema">Desmontagem cadastrada antes da montagem</td>
+                                <td data-label="Prioridade"><b class="unavailable">Alta</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="events">Corrigir →</button></td>
+                            </tr>
+                            <tr data-dq="evento">
+                                <td data-label="Tipo"><span class="pill">Evento</span></td>
+                                <td data-label="Registro">Aniversário Souza</td>
+                                <td data-label="Problema">Desmontagem cadastrada antes da montagem</td>
+                                <td data-label="Prioridade"><b class="unavailable">Alta</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="events">Corrigir →</button></td>
+                            </tr>
+                            <tr data-dq="equipamento">
+                                <td data-label="Tipo"><span class="pill">Equipamento</span></td>
+                                <td data-label="Registro">Refletor PAR LED (12un.)</td>
+                                <td data-label="Problema">Sem categoria — folga (RN-02) não é aplicada</td>
+                                <td data-label="Prioridade"><b class="unavailable">Alta</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="equipment">Corrigir →</button></td>
+                            </tr>
+                            <tr data-dq="equipamento">
+                                <td data-label="Tipo"><span class="pill">Equipamento</span></td>
+                                <td data-label="Registro">Gerador 15kVA</td>
+                                <td data-label="Problema">Sem categoria — folga (RN-02) não é aplicada</td>
+                                <td data-label="Prioridade"><b class="unavailable">Alta</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="equipment">Corrigir →</button></td>
+                            </tr>
+                            <tr data-dq="equipamento">
+                                <td data-label="Tipo"><span class="pill">Equipamento</span></td>
+                                <td data-label="Registro">Tablado 1x1m</td>
+                                <td data-label="Problema">Sem categoria — folga (RN-02) não é aplicada</td>
+                                <td data-label="Prioridade"><b class="pending">Média</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="equipment">Corrigir →</button></td>
+                            </tr>
+                            <tr data-dq="profissional">
+                                <td data-label="Tipo"><span class="pill">Profissional</span></td>
+                                <td data-label="Registro">4 cadastros</td>
+                                <td data-label="Problema">"operador de som" / "op. som" / "Operador Som" tratados como funções diferentes</td>
+                                <td data-label="Prioridade"><b class="pending">Média</b></td>
+                                <td data-label="Ação"><button class="text-button" data-go="people">Corrigir →</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
     </main>
+    </div>
 
     <dialog id="equipment-modal">
         <form method="dialog">
@@ -526,9 +736,13 @@
             <div class="modal-head">
                 <h3>Novo evento</h3><button class="close">×</button>
             </div><label>Nome do evento<input id="event-name" placeholder="Ex.: Show de verão"></label>
-            <div class="form-grid"><label>Montagem<input id="event-build" type="date"></label><label>Execução<input
-                        id="event-live" type="date"></label></div><label>Desmontagem<input id="event-strike"
-                    type="date"></label><button class="primary" id="save-event" value="default">Criar evento</button>
+            <label>Montagem<input id="event-build" type="date"></label>
+            <div class="form-grid"><label>Execução — início<input id="event-live-start"
+                        type="date"></label><label>Execução — fim<input id="event-live-end" type="date"></label></div>
+            <p class="form-note">Deixe "fim" em branco para eventos de um único dia. Suporta de 1 a 5 dias de
+                execução.</p>
+            <label>Desmontagem<input id="event-strike" type="date"></label><button class="primary" id="save-event"
+                value="default">Criar evento</button>
         </form>
     </dialog>
     <dialog id="allocation-modal">
@@ -573,7 +787,7 @@
                 class="primary" value="default">Confirmar retorno</button>
         </form>
     </dialog>
-    <script src="script.js"></script>
+    <script src="./Script/script.js"></script>
 </body>
 
 </html>

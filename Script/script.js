@@ -1,4 +1,24 @@
-const labels = { overview: 'Visão geral', equipment: 'Equipamentos', people: 'Profissionais', events: 'Eventos', allocation: 'Alocação de equipamentos', schedule: 'Escala de equipe', return: 'Saída e retorno', map: 'Mapa de ocupação' };
+const stages = { login: document.querySelector('#stage-login'), launcher: document.querySelector('#stage-launcher'), app: document.querySelector('#stage-app') };
+
+function showStage(name) {
+    Object.entries(stages).forEach(([key, el]) => { el.hidden = key !== name; });
+    window.scrollTo({ top: 0 });
+}
+
+document.querySelector('#login-submit').addEventListener('click', () => {
+    // Validação local (mock). A troca por autenticação via banco de dados fica para a próxima etapa.
+    showStage('launcher');
+});
+
+document.querySelectorAll('.launcher-tile').forEach((tile) => tile.addEventListener('click', () => {
+    showStage('app');
+    showView(tile.dataset.launch);
+}));
+
+document.querySelector('#open-launcher').addEventListener('click', () => showStage('launcher'));
+document.querySelector('#launcher-logout').addEventListener('click', () => showStage('login'));
+
+const labels = { overview: 'Visão geral', equipment: 'Equipamentos', people: 'Profissionais', events: 'Eventos', allocation: 'Alocação de equipamentos', schedule: 'Escala de equipe', return: 'Saída e retorno', map: 'Mapa de ocupação', dataquality: 'Qualidade dos dados' };
 const menuItems = document.querySelectorAll('.menu-item');
 const views = document.querySelectorAll('.view');
 const crumb = document.querySelector('#crumb');
@@ -34,12 +54,20 @@ document.querySelector('#save-person').addEventListener('click', () => {
     document.querySelector('#people-body').insertAdjacentHTML('afterbegin', `<tr><td data-label="Profissional">${name}</td><td data-label="Habilitações"><span class="pill">${skills}</span></td><td data-label="Disponibilidade">${days}</td><td data-label="Próxima escala"><b class="available">Livre</b></td><td data-label="Ações"><button class="more">•••</button></td></tr>`);
 });
 
+function formatExecutionRange(startValue, endValue) {
+    if (!startValue) return 'A definir';
+    if (!endValue || endValue === startValue) return startValue;
+    const days = Math.round((new Date(endValue) - new Date(startValue)) / 86400000) + 1;
+    return `${startValue} a ${endValue} (${days} dias)`;
+}
+
 document.querySelector('#save-event').addEventListener('click', () => {
     const name = textOr(document.querySelector('#event-name').value, 'Novo evento');
     const build = document.querySelector('#event-build').value || 'A definir';
-    const live = document.querySelector('#event-live').value || 'A definir';
+    const live = formatExecutionRange(document.querySelector('#event-live-start').value, document.querySelector('#event-live-end').value);
     const strike = document.querySelector('#event-strike').value || 'A definir';
-    document.querySelector('#event-body').insertAdjacentHTML('afterbegin', `<tr data-status="proposta"><td data-label="Evento">${name}</td><td data-label="Montagem">${build}</td><td data-label="Execução">${live}</td><td data-label="Desmontagem">${strike}</td><td data-label="Itens">Sem itens</td><td data-label="Status"><span class="tag planned">Proposta</span></td></tr>`);
+    document.querySelector('#event-body').insertAdjacentHTML('afterbegin', `<tr data-status="proposta"><td data-label="Evento">${name}</td><td data-label="Montagem">${build}</td><td data-label="Execução">${live}</td><td data-label="Desmontagem">${strike}</td><td data-label="Itens">Sem itens</td><td data-label="Status"><span class="tag planned">Proposta</span></td><td data-label="Ações"><button class="text-button" data-go="allocation">Alocar →</button></td></tr>`);
+    document.querySelectorAll('#event-body [data-go]').forEach((button) => { if (!button.dataset.bound) { button.addEventListener('click', () => showView(button.dataset.go)); button.dataset.bound = 'true'; } });
     updateEventTabs('proposta');
 });
 
@@ -95,6 +123,20 @@ equipmentSearch?.addEventListener('input', () => {
     emptyEquipment.hidden = visible !== 0;
     equipmentResults.textContent = `${visible} equipamento${visible === 1 ? '' : 's'} encontrado${visible === 1 ? '' : 's'}`;
 });
+
+const dqTabs = document.querySelectorAll('.tab[data-dq-filter]');
+const dqRows = () => [...document.querySelectorAll('#dataquality-body tr[data-dq]')];
+
+function updateDqTabs(filter) {
+    dqRows().forEach((row) => { row.hidden = !(filter === 'all' || row.dataset.dq === filter); });
+    dqTabs.forEach((tab) => {
+        const active = tab.dataset.dqFilter === filter;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+    });
+}
+
+dqTabs.forEach((tab) => tab.addEventListener('click', () => updateDqTabs(tab.dataset.dqFilter)));
 
 const peopleSearch = document.querySelector('#people-search');
 const peopleResults = document.querySelector('#people-results');
