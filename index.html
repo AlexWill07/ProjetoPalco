@@ -21,8 +21,7 @@
             <div class="auth-row"><label class="check"><input id="login-remember" type="checkbox"
                         checked> Lembrar-me</label><a class="text-button" href="#">Esqueci minha senha</a></div>
             <button class="primary auth-submit" id="login-submit">Entrar</button>
-            <p class="auth-note">Login validado localmente nesta versão · integração com o banco de dados em
-                desenvolvimento.</p>
+            <p class="auth-note">Acesso autenticado via Supabase · entre com seu e-mail e senha.</p>
         </div>
     </div>
 
@@ -713,6 +712,7 @@
                     <option>Som</option>
                     <option>Luz</option>
                     <option>Estrutura</option>
+                    <option>Energia</option>
                 </select></label><label>Quantidade<input id="eq-amount" type="number" min="1" value="1"></label><label
                 class="check"><input id="eq-rest" type="checkbox"> Exige dia de folga após a desmontagem</label><button
                 class="primary" id="save-equipment" value="default">Salvar equipamento</button>
@@ -727,7 +727,9 @@
                     placeholder="Ex.: luz, montagem"></label><label>Disponibilidade<select id="person-days">
                     <option>Todos os dias</option>
                     <option>Segunda a sexta</option>
+                    <option>Sexta a domingo</option>
                     <option>Quarta a sábado</option>
+                    <option>Sábado e domingo</option>
                 </select></label><button class="primary" id="save-person" value="default">Salvar profissional</button>
         </form>
     </dialog>
@@ -787,6 +789,10 @@
                 class="primary" value="default">Confirmar retorno</button>
         </form>
     </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./Script/config.js"></script>
+    <script src="./Script/db.js"></script>
+    <script src="./Script/app.js"></script>
     <script src="./Script/script.js"></script>
 </body>
 
