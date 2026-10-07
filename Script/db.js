@@ -1,3 +1,5 @@
+// Editado por Gabriel da Silva
+
 // Script/db.js
 // Cliente Supabase + funções de autenticação e acesso a dados.
 const { createClient } = window.supabase;
