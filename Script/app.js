@@ -1,3 +1,5 @@
+// Editado por Gabriel Silva
+
 // Script/app.js
 // Camada de aplicação: carrega os dados do Supabase, renderiza as telas
 // e liga os formulários de cadastro (persistência real no banco).
