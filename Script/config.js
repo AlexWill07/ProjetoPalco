@@ -1,3 +1,4 @@
+// Editado por Gabriel da Silva 
 // Script/config.js
 // Credenciais do Supabase. A "publishable key" é segura para ficar no navegador:
 // o acesso real é protegido pelo Row Level Security (configurado no schema.sql).
