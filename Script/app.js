@@ -1,5 +1,3 @@
-// Editado por Gabriel Silva
-
 // Script/app.js
 // Camada de aplicação: carrega os dados do Supabase, renderiza as telas
 // e liga os formulários de cadastro (persistência real no banco).
@@ -84,6 +82,9 @@ function renderProfissionais() {
 function renderAll() {
   renderEquipamentos();
   renderProfissionais();
+  window.PalcoLive?.refresh(); // notificações e mapa de ocupação
+  window.PalcoQuality?.refresh(); // qualidade dos dados
+  window.PalcoAllocation?.refresh(); // alocação de equipamentos
 }
 
 // ---------- Dados ----------

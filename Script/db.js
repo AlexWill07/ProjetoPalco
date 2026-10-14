@@ -1,7 +1,4 @@
 // Editado por Gabriel da Silva
-
-// Script/db.js
-// Cliente Supabase + funções de autenticação e acesso a dados.
 const { createClient } = window.supabase;
 
 const db = createClient(
@@ -13,6 +10,10 @@ const db = createClient(
 async function signIn(email, password) {
   const { data, error } = await db.auth.signInWithPassword({ email, password });
   return { user: data?.user ?? null, session: data?.session ?? null, error };
+}
+async function getSession() {
+  const { data } = await db.auth.getSession();
+  return data.session;
 }
 
 async function signOut() {
