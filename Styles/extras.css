@@ -1,0 +1,94 @@
+/* Styles/extras.css — estilos dos recursos novos (exclusão, mapa, qualidade, financeiro).
+   Usa as mesmas variáveis do styles.css (--line, --mu, --grn, --co, --gold...). */
+
+/* ---------- Botão de excluir (lixeira) ---------- */
+.del-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 6px;
+  padding: 0;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: none;
+  color: var(--mu);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.del-btn:hover,
+.del-btn:focus-visible {
+  color: #ff8c72;
+  background: rgba(254, 110, 80, 0.12);
+  border-color: rgba(254, 110, 80, 0.35);
+}
+.del-btn:disabled { opacity: 0.4; cursor: progress; }
+
+/* ---------- Qualidade dos dados: prioridade Baixa ---------- */
+.prio-low { color: var(--mu); }
+
+/* ---------- Mapa de ocupação ---------- */
+.days i {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.days.map-section { grid-template-columns: 1fr; min-height: 0; }
+.days.map-section b {
+  color: var(--mu);
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ---------- Financeiro ---------- */
+.fin-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--mu);
+  font-size: 12px;
+  font-weight: 600;
+}
+.fin-filter select { min-width: 220px; }
+#fin-cards { grid-template-columns: repeat(4, 1fr); }
+#fin-cards strong { font-size: 26px; white-space: nowrap; }
+
+.fin-total td { font-weight: 700; color: #fff; background: rgba(255, 255, 255, 0.03); }
+.fin-prev td { color: var(--mu); }
+.fin-empty { text-align: center; color: var(--mu); padding: 26px !important; font-weight: 400 !important; }
+.fin-scroll { max-height: 280px; overflow-y: auto; }
+
+.fin-bar {
+  height: 5px;
+  margin-top: 6px;
+  min-width: 70px;
+  border-radius: 99px;
+  background: rgba(94, 230, 168, 0.28);
+  overflow: hidden;
+}
+.fin-bar i { display: block; height: 100%; border-radius: 99px; background: var(--co); }
+
+.fin-chart { padding: 0 18px 8px; }
+.fin-chart svg { display: block; width: 100%; height: auto; }
+.fin-in { fill: var(--grn); background: var(--grn); }
+.fin-out { fill: var(--co); background: var(--co); }
+.fin-axis { stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
+.fin-line { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linejoin: round; }
+.fin-dot { fill: var(--bg); stroke: var(--gold); stroke-width: 2; }
+.fin-lbl { fill: var(--mu); font-size: 10px; }
+.fin-legend { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 6px; color: var(--mu); font-size: 12px; }
+.fin-legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 3px; }
+.fin-legend .fin-sal { background: var(--gold); }
+.fin-legend .fin-per { margin-left: auto; }
+
+@media (max-width: 1100px) {
+  #fin-cards { grid-template-columns: repeat(2, 1fr); }
+  #finance .split { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  #fin-cards { grid-template-columns: 1fr; }
+  .fin-filter { width: 100%; }
+  .fin-filter select { flex: 1; min-width: 0; }
+}
