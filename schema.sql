@@ -1,3 +1,5 @@
+-- Editado por Gabriel da Silva
+
 -- ============================================================================
 --  PALCO VIVO · Schema do banco de dados (PostgreSQL / Supabase)
 --  Como usar: Supabase → SQL Editor → cole este arquivo inteiro → Run.
